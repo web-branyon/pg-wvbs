@@ -1,0 +1,133 @@
+.ui-li-has-count .ui-li-count {
+font-size: 12px;
+}
+.ui-btn-inner {
+padding: 1em 20px;
+}
+.ui-header .ui-btn-inner, .ui-footer .ui-btn-inner, .ui-mini .ui-btn-inner {
+padding: 1em 20px;
+}
+.ui-fullsize .ui-btn-inner, .ui-fullsize .ui-btn-inner {
+font-size: 16px;
+padding: 1em 20px;
+}
+.ui-header .ui-title, .ui-footer .ui-title {
+min-height: 2.0em;
+}
+.status {
+	visibility:hidden;
+}
+.content {
+	max-width: 800px;
+	margin:0 auto;
+}
+div.ui-btn-inner {
+	min-height:65px;
+}
+.emailButton {
+	min-height:40px;
+	vertical-align:middle;
+}
+.ui-li-has-thumb .ui-btn-inner {
+    max-height: 50px;
+    padding-left: 10px;
+}
+.ui-li-aside {
+	width:30%;
+}
+.ui-loader-default h1 {
+	font-size: 20px;
+	width:160px;
+	height:60px;
+}
+.ui-loader-default {
+	background-color:black;
+	opacity: 0.9;
+	width:160px;
+	height: 100px;
+	text-align:center;
+	position:absolute;
+	left:45%;
+}
+.ui-loader .ui-icon {
+	margin: 5px auto;
+}
+.ui-icon-loading {
+	background:url(../images/bookPreloader.gif);
+	background-size: 100%;
+}
+.titleImg {
+	width: 100%;
+	max-width:600px;
+	border:none;
+}
+#mainPage {
+	background: transparent url(../images/PlasterBackground.jpg) no-repeat;
+	background-size: 120%;
+	/*background-color:#B1AEAB;*/
+	background-color:#FFFFFF;
+	background-position: center;
+	background-position: top;
+}
+div.bground {
+	background: transparent url(../images/PlasterBackground.jpg) no-repeat;
+	background-size: 120%;
+	background-color:#FFFFFF;
+	background-position: center;
+	background-position: top;
+}
+.status {
+	color: red;
+}
+/* custom icons */
+.ui-icon-feed-rss {
+	background-image: url(../images/feed-icon-24x24.png) no-repeat;
+}
+/**** VIDEO ****/
+#videoContainer {
+  width:90%;
+  max-width:960px;
+  text-align:center;
+  margin: 0 auto;
+}
+#containingBlock {
+  width:90%;
+  max-width:960px;
+  max-height:540px;
+  text-align:center;
+  margin: 0 auto;
+}
+#videoWrapper {
+  background-color: #000;
+  text-align:center;
+  position: relative;
+  padding-bottom:56.25%;
+  padding-top:0px;
+  max-width:960px;
+  max-height:540px;
+  height:0px;
+  margin: 0 auto;
+  overflow:hidden;
+  -moz-box-shadow: 0px 0px 30px 1px #000; 
+  -webkit-box-shadow: 0px 0px 30px 1px #000; 
+  box-shadow: 0px 0px 30px 1px #000;
+}
+#videoPlayer {
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+}
+.screenshotImg {
+  -moz-box-shadow: 0px 0px 6px 2px #FF0;
+  -webkit-box-shadow: 0px 0px 6px 2px #FF0;
+  box-shadow: 0px 0px 6px 2px #FF0;
+}
+.screenshot {
+  -webkit-margin-before:0px;
+  -webkit-margin-after:0px;
+  vertical-align:top;
+  text-align:center; 
+  color:red;
+}

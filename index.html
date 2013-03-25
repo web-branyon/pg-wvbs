@@ -1,0 +1,699 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">    
+    <title>WVBS</title> 
+	<link rel="shortcut icon" type="image/x-icon" href="images/webapp.ico"  />
+    <meta itemprop="image" content="images/webapp.ico">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"  />
+    <meta name="description" content="World Video Bible School offers a web app to access our latest projects, see our newest products, find our current specials, and track our Facebook posts for all of our pages."  />
+    <meta name="keywords" content="World Video Bible School, Online Video, Projects, DVDs, Products, Specials, WVBS Facebook"  />
+
+    <meta property="og:url" content="http://www.wvbs.org/mobile/" />
+    <meta property="og:title" content="WebApp for World Video Bible School"/>
+    <meta property="og:description" content="World Video Bible School offers a web app to access our latest projects, see our newest products, find our current specials, and track our Facebook posts for all of our pages."  />
+    <meta property="og:image" content="images/wvbs-icon.png" />
+    <link rel="image_src" href="images/wvbs-icon.png" />
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" sizes="57x57" href="images/wvbs-icon-57.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="images/wvbs-icon-72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="images/wvbs-icon-114.png"/>
+    <link rel="apple-touch-startup-image" href="images/splash-iphone-lowres.png" />
+    <link rel="apple-touch-startup-image" sizes="640x960" href="images/splash-iphone-hires.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash-ipad-landscape.png" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash-ipad-portrait.png" />
+
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+	<!--<script src="GAPlugin.js"></script>-->
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.0.min.css" />
+    <link rel="stylesheet" href="css/wvbs-app.css" />
+	<script src="js/jquery-1.8.2.js"></script>
+	<script src="js/jquery.mobile-1.3.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>    
+	<script>
+		$(document).bind("mobileinit", function(){
+		  $.mobile.defaultPageTransition = 'slide';
+		});
+    </script>
+    <link rel="stylesheet" href="css/mobile.css" />
+    <script src="js/wvbs-main.js"></script>
+    <script type="text/javascript" charset="utf-8">
+		var isMobile = {
+			Android: function() {
+				return navigator.userAgent.match(/Android/i) ? true : false;
+			},
+			BlackBerry: function() {
+				return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+			},
+			iPhone: function() {
+				return navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+			},
+			iPad: function() {
+				return navigator.userAgent.match(/iPad/i) ? true : false;
+			},
+			Windows: function() {
+				return navigator.userAgent.match(/IEMobile/i) ? true : false;
+			},
+			any: function() {
+				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+			}
+		};
+		function mainPageReturn() {
+			window.location.hash = '#mainPage';
+		}
+
+		$(document).ready(function() {
+		//$("#mainPage").live("pageinit", function() {
+			if ( isMobile.iPhone() ) {
+				//alert('iOS');
+				//window.location.hash = '#iPhoneDialog';
+				$("#iOSbutton").css('display','inline');
+				$("#iOSbutton").attr('href','#iPhoneDialog');
+			}
+			if ( isMobile.iPad() ) {
+				//window.location.hash = '#iPadDialog';
+				$("#iOSbutton").css('display','inline');
+				$("#iOSbutton").attr('href','#iPadDialog');
+			}
+			if ( isMobile.Android() ) {
+				//alert('Android')
+				//window.location.hash = '#androidDialog';
+				$("#androidButton").css('display','inline');
+			}
+		});
+      </script>
+	  <script>		
+	  // Call onDeviceReady when Cordova is loaded.
+	  // At this point, the document has loaded but cordova-1.7.0.js has not. When Cordova is loaded and talking with the native device, it will call the event `deviceready`.
+	  function onLoad() {
+		  document.addEventListener("deviceready", onDeviceReady, false);
+		  $( document ).bind( "pagebeforeload", function(){ $("[data-role=footer]").style.display = "none"; }, false);
+	  }
+	  // Cordova is loaded and it is now safe to make calls Cordova methods
+	  function onDeviceReady() {
+		  // Register the event listener
+		  //document.addEventListener("menubutton", onMenuShow, false);
+		  document.addEventListener('menubutton', function(){
+			  //alert('You pressed the menu button');
+		  });
+		  //checkConnection();
+		  //startGAPlugin();
+	  }
+
+	  $(window).load(function(){
+		$( "#wvbsNewsUpdate" ).popup({ history: false });
+		//$( "#wvbsNewsUpdate" ).popup("reposition",{ positionTo : newsDIV });
+		//$( "#wvbsNewsUpdate" ).popup( "open" );
+		$( "#newsButton" ).trigger( "click" );
+		//$( "#wvbsNewsUpdate" ).popup( "option", "history", false );
+	  });
+/*
+	  $(window).load(loadNews);
+	  
+	  function setupNews(){
+		$( "#wvbsNewsUpdate" ).popup({ history : false });
+	  }
+	  function loadNews(){
+		$( "#newsButton" ).trigger( "click" );
+	  }
+*/	  
+	  function closeNewsBox(){
+		  //$( "#wvbsNewsUpdate" ).popup( "close" );
+		  $('#newsDIV').slideUp();
+		  $('#newsButton').css('display','inline');
+	  }
+	  function openNewsBox(){
+		  $('#newsDIV').slideDown();
+		  $('#newsButton').css('display','none');
+	  }
+
+	  </script>
+<!-- Following is code to be used for the GAPlugin
+	  <script type="text/javascript">
+          var gaPlugin;
+          function startGAPlugin() {
+              gaPlugin = window.plugins.gaPlugin;      
+              gaPlugin.init(nativePluginResultHandler,nativePluginErrorHandler, "UA-24957485-1", 10);
+          }
+          function nativePluginResultHandler (result) {
+              //alert('nativePluginResultHandler - '+result);
+              console.log('nativePluginResultHandler: '+result);
+          }
+          function nativePluginErrorHandler (error) {
+              //alert('nativePluginErrorHandler - '+error);
+              console.log('nativePluginErrorHandler: '+error);
+          }
+          function TrackPageView() {
+              gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
+          }
+          function VariableButtonClicked() {
+              gaPlugin.setVariable( nativePluginResultHandler, nativePluginErrorHandler, "favoriteColor", "Purple", 1);
+              gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event with variable", 2);
+          }
+          function PageButtonClicked() {
+              gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "some.url.com");
+          }
+          function goingAway() {
+              gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
+          }
+		  //$('[data-role=page]').live('pageshow', TrackPageView);
+      </script>
+-->
+      <script>	  	  
+	  function checkConnection() {
+        var networkState = navigator.network.connection.type;
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+        //alert('Connection type: ' + states[networkState]);
+    }
+	  // Handle the menu button
+	  function onMenuKeyDown() {
+		  //$.mobile.changePage("#share");
+		  var pageID = $('.ui-page-active').data('url');
+		  $("#"+pageID+"Footer").slideToggle("slow");
+	  }
+	  function onMenuShow() {
+		  //$("#contextMenu").slideToggle("slow");
+		  //$("#"+pageID).slideToggle("slow");
+		  var footerID = $('.ui-page-active').data('url') + "Footer";
+		  $("#"+footerID).slideToggle("slow");
+		  //$.mobile.changePage("#contextMenuPage");
+	  }
+	  // Set and Get Accessed dates
+	  if (localStorage.latestAccess)
+	  {
+		  localStorage.setItem('previousAccess',localStorage.latestAccess);
+  		  localStorage.latestAccess = getCurrentDate();
+	  }
+	  else {
+		  localStorage.latestAccess = getCurrentDate();
+	  }
+	  webSites();
+	  vimeoAlbumJSON('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D\'http%3A%2F%2Fvimeo.com%2Fapi%2Fv2%2Fwvbs%2Falbums.xml\'&format=json','50');
+	  youtubeAlbumJSON('http://gdata.youtube.com/feeds/api/users/worldvbs/playlists?v=2&max-results=50&alt=jsonc');
+	  wvbsJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.wvbs.org%2Findex.php%2Frss%2Fcatalog%2Fnew%2Fstore_id%2F1%2F\'&format=json','9');
+	  wvbsJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.wvbs.org%2Findex.php%2Frss%2Fcatalog%2Fspecial%2Fstore_id%2F1%2Fcid%2F0%2F\'&format=json','9');
+	  facebookJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D273296449735%26viewer%3D0%26key%3DAWjBgXBubehsmqJR%26format%3Drss20\'&format=json');
+	  facebookJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D273848047478%26viewer%3D312760610126%26key%3DAWh_hhcZ46ZlHld7%26format%3Drss20\'&format=json');
+	  facebookJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D312760610126%26viewer%3D273848047478%26key%3DAWhJlsxmSBSUs4JS%26format%3Drss20\'&format=json');
+	  wvbsNews(renderNewsEntries);	  
+    </script>
+
+	<script type="text/javascript" src="js/GALocalStorage.js"></script>
+    <script>
+      //google analytics method: https://github.com/ggendre/GALocalStorage
+        ga_storage._setAccount('UA-24957485-3');
+        ga_storage._setDomain('none');
+        ga_storage._trackPageview('/index.html');
+    </script>
+<!--Standard GA code for web browsers, coupled with jquerymobile pseudopage tracking at end of this file
+	<script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-24957485-1']);
+      _gaq.push(['_setDomainName', 'wvbs.org']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>    
+-->    
+    <style type="text/css">
+    .new-badge:after {
+        content: 'New';
+        position: absolute;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        width: 30px;
+        height: 30px;
+        top: 10%;
+		left: -12px;
+        margin-left: -10px;
+        margin-top:  -15px;
+        background-color: red;
+        background-image: -webkit-linear-gradient(top, #f7847e 0%,#f9363d 49%,#e8100e 50%,#c30910 100%);
+        color: white;
+		text-align:center;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 27px;
+        border: black;
+        border-radius: 30px;
+        border: solid 2px white;
+        z-index: 2;
+        }
+</style>
+</head> 
+<body id="MainBody" bgcolor="#B1AEAB" onLoad="onLoad()"> 
+  <div data-role="page" id="mainPage" data-title="World Video Bible School's Mobile App">
+	<div data-role="header" data-position="fixed" data-theme="a">
+        <h1></h1>
+        <a id="iOSbutton" style="display:none;" class="ui-btn-left" href="#iPhoneDialog" data-role="button" data-icon="plus" data-theme="b">Add to Home Screen</a>
+        <a id="androidButton" style="display:none;" class="ui-btn-left" href="#androidDialog" data-role="button" data-icon="plus" data-theme="b">Get the WVBS Android App</a>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a id="newsButton" href="#" style="display:none;" onClick="javascript:openNewsBox();" data-role="button" data-rel="popup" data-position-to="#newsDIV" data-transition="slidedown" data-icon="alert" >News</a>
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a>
+        </div>
+        <!--
+        <a class="ui-btn-right" href="javascript:onMenuShow();" data-role="button" data-icon="info" data-theme="a">Menu</a>
+        -->
+	</div>
+    <style>
+	  .keepcentered {
+		position:    absolute;
+		left:        50%;        /* Start with top left in the center */
+		width:       50%;      /* The fixed width... */
+		margin-left: -26%;     /* Shift over half the width */
+		-webkit-box-shadow: 0px 0px 15px rgba(50, 50, 49, 1);
+-moz-box-shadow:    0px 0px 15px rgba(50, 50, 49, 1);
+box-shadow:         0px 0px 15px rgba(50, 50, 49, 1);
+	  }
+    </style>
+    <div id="newsDIV" class="content ui-content .ui-overlay-shadow ui-corner-all ui-body-c keepcentered" style="background-color:white; margin-top: 1px; display:none;">
+      <a href="#" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right " style="float:right; top: -15px; right:-14px; margin: 0; z-index: 1101;" onClick="javascript:closeNewsBox();">Close</a>
+      <div id="newsMessages">
+      </div>
+    </div>
+
+    <div id="logoDIV" style="margin:0 auto; text-align:center;">
+      <img class="titleImg" src="images/2011-WVBS-Online-Logo.png" alt="WVBS Online Logo" />
+    </div>
+
+    <div class="content" data-role="content" style="padding-top:0%;">
+
+		<div id="onlineWebList" data-role="collapsible" data-collapsed="false" data-content-theme="a" data-inset="true" data-theme="b">
+            <h3>WVBS Online Resources</h3>
+            <ul id="weblinksList" data-role="listview" data-inset="true" data-theme="d">
+              <li data-theme="c"><a id="webSiteListLink" href="#webSitesArchive" style="padding:20px 85px;"><img src="images/internet-globe.png" width="60" />Video Websites by WVBS</a></li>
+              <li data-theme="c"><a href="#" id="vimeoAlbumListLink" onclick="javascript:vimeoAlbumJSON('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D\'http%3A%2F%2Fvimeo.com%2Fapi%2Fv2%2Fwvbs%2Falbums.xml\'&format=json','50',renderVimeoAlbumEntries); return false;" style="padding:20px 85px;"><img src="images/play-button.png" width="60" />Streaming Video Albums by WVBS</a></li>
+			  <li data-theme="c"><a href="#" id="ytAlbumListLink" onclick="javascript:youtubeAlbumJSON('http://gdata.youtube.com/feeds/api/users/worldvbs/playlists?v=2&max-results=50&alt=jsonc',renderYTAlbumEntries); return false;" style="padding:20px 85px;"><img src="images/youtube_logo_standard_againstwhite.png" width="75" style="padding-top:15px;" />Video Playlists by WVBS</a></li>
+            </ul>
+        </div>
+
+		<div id="wvbsOnlineFeeds" data-role="collapsible" data-collapsed="false" data-content-theme="a" data-inset="true" data-theme="b">
+            <h3>WVBS.org Product Feeds</h3>
+            <ul id="wvbsFeedList" data-role="listview" data-inset="true" data-theme="c">
+                <!--<li data-role="list-divider">Recent News Feeds</li>
+                -->
+                <li class="fblist"><a href="#" id="wvbsNewProductListLink" onclick="javascript:wvbsJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.wvbs.org%2Findex.php%2Frss%2Fcatalog%2Fnew%2Fstore_id%2F1%2F\'&format=json','9',renderWVBSEntries); return false;" style="padding:20px 80px;"><img src="images/wvbs-new.png" width="60" />New Products</a></li>
+                <li class="fblist"><a href="#" id="wvbsSpecialProductListLink" onclick="javascript:wvbsJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.wvbs.org%2Findex.php%2Frss%2Fcatalog%2Fspecial%2Fstore_id%2F1%2Fcid%2F0%2F\'&format=json','9',renderWVBSEntries); return false;" style="padding:20px 80px;"><img src="images/wvbs-sale.png" width="60" />Current Specials</a></li>
+            </ul>
+        </div>
+
+		<div id="wvbsFacebookFeeds" data-role="collapsible" data-collapsed="false" data-content-theme="a" data-inset="true" data-theme="b">
+            <h3>WVBS Facebook Feeds</h3>
+            <ul id="fbFeedList" data-role="listview" data-inset="true" data-theme="c">
+                <!--<li data-role="list-divider">Recent News Feeds</li>
+                -->
+                <!--Remember to ESCAPE the single quote marks around the URL in the yahoo address-->
+                <li class="fblist"><a href="#" id="wvbsFBListLink" onclick="javascript:facebookJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D273296449735%26viewer%3D0%26key%3DAWjBgXBubehsmqJR%26format%3Drss20\'&format=json',renderFBpageEntries); FacebookFeedTitle('WVBS Facebook'); return false;" style="padding:20px 100px;"><img src="images/Facebook_WVBS_web.png" style="padding: 10px 0px;" width="95" />WVBS Notes</a></li>
+                <li class="fblist"><a href="#" id="sftFBListLink" onclick="javascript:facebookJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D273848047478%26viewer%3D312760610126%26key%3DAWh_hhcZ46ZlHld7%26format%3Drss20\'&format=json',renderFBpageEntries); FacebookFeedTitle('Searching for Truth Facebook'); return false;" style="padding:20px 100px;"><img src="images/Facebook_Searching-for-Truth_web.png" style="padding: 10px 0px;" width="100" />Searching for Truth</a></li>
+                <li class="fblist"><a href="#" id="boundFBListLink" onclick="javascript:facebookJSON('http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20feed%20WHERE%20url%3D\'http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D312760610126%26viewer%3D273848047478%26key%3DAWhJlsxmSBSUs4JS%26format%3Drss20\'&format=json',renderFBpageEntries); FacebookFeedTitle('Bound Facebook'); return false;" style="padding:20px 100px;"><img src="images/Facebook_Bound_web.png" style="padding: 10px 0px;" width="100" />Bound Movie</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mainPageFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+      <div data-role="navbar" data-iconpos="top" data-theme="c" >
+          <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+          </ul>
+      </div><!-- /navbar -->
+    </div>
+  </div>
+  <div data-role="dialog" id="iPhoneDialog" data-theme="b">
+      <div data-role="content" style="text-align:center;" >
+          <h3 style="color:black;">Instructions to add 'WVBS' icon to Home Screen<br/>- in 3 Easy Steps -</h3>
+   		<div style="text-align:left;">
+            <p style="-webkit-margin-after:0px;"><strong>Step 1.</strong> Select the "Action" button at the Bottom of the screen</p>
+            <p class="screenshot" >Screenshot:&nbsp;<img class="screenshotImg" src="images/Add-to-Home-Screen_iPhone-Step1_opt.jpg" width="200"/></p>
+			<p style="-webkit-margin-after:0px;"><strong>Step 2.</strong> Select "Add to Home Screen"</p>
+            <p class="screenshot">Screenshot:&nbsp;<img class="screenshotImg" src="images/Add-to-Home-Screen_iPhone-Step2_opt.jpg" width="200"/></p>
+			<p style="-webkit-margin-after:0px;"><strong>Step 3.</strong> Type desired name for Icon and select "Add"</p>
+            <p class="screenshot">Screenshot:&nbsp;<img class="screenshotImg" src="images/Add-to-Home-Screen_iPhone-Step3_opt.jpg" width="200"/></p>
+		</div>
+          <a href="javascript:mainPageReturn();" data-role="button" data-theme="e" data-transition="slidedown">Cancel</a>    
+      </div>
+  </div>
+  <div data-role="dialog" id="iPadDialog" data-theme="b">
+      <div data-role="content" >
+          <h3 style="color:black;">Instructions to add WVBS Web App to Home Screen</h3>
+		<div style="text-align:center;">
+			<p>iPad users should follow these steps to add the "WVBS" icon to your Home Screen:</p>
+			<!--
+            1. Click middle button below.<br />
+			2. Select Add to Homescreen.<br />
+			3. Type desired name and your done.<br />
+            -->
+            <img src="images/Add-to-Home-Screen_iPad_opt.jpg" width="320"/>
+		</div>
+          <a href="javascript:mainPageReturn();" data-role="button" data-theme="e" data-transition="slidedown">Cancel</a>    
+      </div>
+  </div>
+  <div data-role="dialog" id="androidDialog" data-theme="b">
+      <div data-role="content" >
+          <h3 style="color:black;">WVBS App for Android</h3>
+		<div style="text-align:center;">
+			Download the FREE WVBS App for Android from either:<br />
+			1. <a href="https://play.google.com/store/apps/details?id=org.wvbs"><img src="images/android_app_on_play_logo_large.png" width="150" /></a><br />
+			2. <a href="http://www.amazon.com/gp/product/B008L44E6S/ref=WVBS"><img src="images/amazonappstore-black_badge-opt.png" width="150" /></a>
+		</div>
+          <a href="javascript:mainPageReturn();" data-role="button" data-theme="e" data-transition="slidedown">Cancel</a>    
+      </div>
+  </div>
+  
+  <div data-role="page" id="webSitesArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1>WVBS Online Sites</h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="index.html" data-role="button" data-ajax='false' data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div class="content" data-role="content">
+        <ul id="webSitesArchiveList" data-role="listview" data-filter="true" data-inset="true" data-divider-theme="b" data-theme="d" data-count-theme="e">
+           <li data-role="list-divider" data-theme="b">Specific Video Websites</li>
+           <li>LOADING ...</li>
+        </ul>
+		<div id="webSitesArchiveStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="webSitesArchiveFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+
+  <div data-role="page" id="albumArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
+	  <script>
+		$("#albumArchive").live("pageinit", function() {
+			//vimeoAlbumJSON(' ','50');
+		});
+      </script>
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1>WVBS Video Album Archive</h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="#mainPage" data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div class="content" data-role="content">
+        <ul id="archiveAlbumsList" data-role="listview" data-filter="true" data-inset="true" data-divider-theme="c" data-theme="d" data-count-theme="e"></ul>
+		<div id="albumArchiveStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="albumArchiveFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+    
+    <div data-role="page" id="videoArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
+	  <script>
+		$("#videoArchive").live("pageinit", function() {
+			//vimeoVideoJSON(' ','50');
+		});
+      </script>
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1>WVBS Video Archive</h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="index.html" data-ajax='false' data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div class="content" data-role="content">
+        <ul id="archiveVideosList" data-role="listview" data-filter="true" data-inset="true" data-divider-theme="c" data-theme="d" data-count-theme="e"></ul>
+		<div id="videoArchiveStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="videoArchiveFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+  <div data-role="page" id="videoPlayerPage" class="bground" data-title="WVBS Online Videos">
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1></h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="#mainPage" data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div data-role="content" id="videoContainer">
+		<div id="videoPlayerPageStatus" class="status" style="padding-bottom:10px;" ></div>  
+        <div id="containingBlock">
+          <div id="videoWrapper"> </div>
+        </div>
+        <div>
+          <p id="videoDisclaimer">In versions of Android prior to 3.1, the video player will load but may not play.</p>
+        </div>
+      </div>
+  
+      <div id="videoPlayerPageFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+  
+  <div data-role="page" id="WVBS-Feed" class="bground" data-title="WVBS Product Feed" data-dom-cache="true">
+	  <script>
+		$("#WVBS-Feed").live("pageinit", function() {
+			//wvbsJSON(' ','10');			
+			if(localStorage["currentEntries"]) {
+				currentEntries = JSON.parse(localStorage["currentEntries"]);
+				moreRSSurl = JSON.parse(localStorage["moreRSSurl"]);
+				wvbsJSON(moreRSSurl,'9',renderWVBSEntries);
+			}
+		});
+      </script>
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1>WVBS Product Feed</h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="#mainPage" data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div class="content" data-role="content" id="webEntryText">
+        <ul id="wvbslinksList" data-role="listview" data-filter="true" data-inset="true" data-theme="d"></ul>
+        <a id="wvbsMoreFeed" data-role="button" data-theme="a" href="#" onClick="javascript:moreWVBSEntries(9); return false;">More ...</a>
+		<div id="WVBS-FeedStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="WVBS-FeedFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+
+  <div data-role="page" id="FacebookFeed" class="bground" data-title="WVBS Facebook Feed" data-dom-cache="true">
+	  <script>
+		$("#FacebookFeed").live("pageinit", function() {
+			if(localStorage["moreRSSurl"]) {
+				moreRSSurl = JSON.parse(localStorage["moreRSSurl"]);
+				//entriesFBnotes = JSON.parse(localStorage["entriesFBnotes"]);
+				//renderFBnotesEntries(entriesFBnotes);
+				//entriesFBpage = JSON.parse(localStorage["entriesFBpage"]);
+				//renderFBpageEntries(entriesFBpage);
+				facebookJSON(moreRSSurl,'50');
+			}
+		});
+      </script>
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1 class="title"></h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="#mainPage" data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+      <div class="content" data-role="content" id="facebookEntryText">
+<!--
+        <div data-role="collapsible" data-collapsed="false" data-content-theme="a" data-inset="true" data-theme="b">
+          <h3>Facebook Notes</h3>
+          <ul id="linksFBnotesList" data-role="listview" data-inset="true" data-theme="d">
+            <li>LOADING ...</li>
+          </ul>
+        </div>
+-->
+        <div data-role="collapsible" data-collapsed="false" data-content-theme="a" data-inset="true" data-theme="b">
+          <h3>Facebook Status Posts</h3>
+          <ul id="linksFBpageList" data-role="listview" data-inset="true" data-theme="d">
+            <li>LOADING ...</li>
+          </ul>
+        </div>
+		<div id="FacebookFeedStatus" class="status" style="padding-bottom:10px;" ></div>  
+          <!--More Facebook entries, however without using FB Graph API and access_token, there is a limit of 10 entries
+           <a id="fbMoreFeed" data-role="button" data-theme="a" href="#" onClick="javascript:moreFBEntries(10); return false;">More ...</a>
+          -->
+      </div>
+  
+      <div id="FacebookFeedFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+  
+  <div data-role="page" id="contentPage">
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1></h1>
+         <div data-role="controlgroup"  data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="#share" data-theme="a" data-role="button" data-transition="slideup" data-icon="star">Share</a>
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info" >Menu</a>
+          <a href="#mainPage" data-role="button" data-icon="home">Home</a> 
+        </div>        
+      </div>
+  
+      <div class="content" data-role="content" id="entryText">
+      		<div id="contentPageStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="contentPageFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+      
+  </div>
+
+  <div data-role="page" id="videoPage">
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1></h1>
+          <a href="#share" data-theme="a" data-role="button" class="ui-btn-right" 
+          data-transition="slideup" data-icon="star">Share</a> 
+      </div>
+  
+      <div data-role="content" id="videoSrc">
+      </div>
+  
+      <div id="videoPageFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+      
+  </div>
+
+  <div data-role="dialog" id="share" data-theme="b">
+      <div data-role="content" >
+          <h3 style="color:black;">Share WVBS with someone</h3>
+
+          <div id="twitterContainer">
+            <a id="twitterLink" target="_blank" rel="external" data-role="button" data-rel="dialog" data-theme="b" href="https://twitter.com/intent/tweet?text=World%20Video%20Bible%20School&url=http%3A%2F%2Fwvbs.org"><img src="images/twitter-bird-dark-bgs.png" style="width:35px; vertical-align:-10px;" /><span style="margin-bottom:5px;">Tweet</span></a>
+          </div>
+          <div id="facebookContainer">
+            <a id="facebookLink" target="_blank" rel="external" data-role="button" data-rel="dialog" data-theme="a" href="http://www.facebook.com/sharer.php?u=http://wvbs.org"><img src="images/f_logo.png" style="width:25px; vertical-align:-5px; padding-right:10px;" /><span style="margin-bottom:5px;">Facebook</span></a>
+          </div>
+          <div id="emailContainer">
+            <a class="emailButton" target="_blank" href="mailto:?subject=Checkout material from WVBS &body=World Video Bible School produces Bible study and Faith-building material. For more information and to see what WVBS offers checkout http%3A%2F%2Fwww.WVBS.org" rel="external" data-role="button" data-rel="dialog" data-theme="d" >Email</a> 
+          </div>
+          <a href="index.html" data-role="button" data-rel="back" data-theme="e" data-transition="slidedown">Cancel</a>    
+  
+      </div>
+
+  </div>
+
+  <div data-role="dialog" id="contact" data-theme="b">
+      <div data-role="content" >
+          <h3 style="color:black;">Contact WVBS</h3>
+          <p><a id="phoneLink" href="tel:5123985211" data-role="button" data-theme="a" >Phone: 512-398-5211</a></p>
+          <a href="mailto:biblestudy@wvbs.org?subject=Question/Comment for WVBS from Web App" rel="external" data-role="button" data-rel="dialog" data-theme="a" >Email</a> 
+          <a href="index.html" data-role="button" data-rel="back" data-theme="e" data-transition="slidedown">Cancel</a>    
+      </div>
+  </div>
+
+<script>
+  //google analytics method: https://github.com/ggendre/GALocalStorage
+  $('[data-role=page]').live('pageshow', function (event, ui) {
+	  console.log('google analytics pageshow')
+	  try {
+		  page = location.href.replace(/.*\//,'/')
+		  if (page && page.length > 1) {
+			  console.log('google analytics pageshow url :'+page)
+			  ga_storage._trackPageview(page);
+		  } else {
+			  console.log('google analytics pageshow default url')
+			  ga_storage._trackPageview();
+		  }
+	  } catch(err){
+		  console.log('error google analytics '+err)
+	  }
+  });
+</script>
+
+<!--Script below works to track jquerymobile pseudopages in web browser
+  <script>
+    $('[data-role=page]').live('pageshow', function (event, ui) {
+        try {
+          _gaq.push(['_setAccount', 'UA-24957485-1']);
+            hash = location.hash;
+            if (hash) {
+                _gaq.push(['_trackPageview', hash.substr(1)]);
+            } else {
+                _gaq.push(['_trackPageview']);
+            }
+        } catch(err) { 
+        }
+    });
+  </script>
+-->  
+</body>
+</html>

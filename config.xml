@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="org.wvbs" versionCode="2" version="2.0.0">
+		<name>WVBS</name>
+		<description>World Video Bible School offers a web app to access our latest projects, see our newest products, find our current specials, and track our Facebook posts for all of our pages.</description>
+		<author href="http://wvbs.org" email="biblestudy@wvbs.org">
+World Video Bible School
+		</author>
+		<preference name="phonegap-version" value="2.3.0" />
+		<preference name="orientation" value="default" />
+		<preference name="target-device" value="universal" />
+		<preference name="fullscreen" value="false" />
+		<preference name="webviewbounce" value="true" />
+		<preference name="prerendered-icon" value="true" />
+		<preference name="stay-in-webview" value="true" />
+		<preference name="ios-statusbarstyle" value="default" />
+		<preference name="disable-cursor" value="true" />
+		<preference name="android-minSdkVersion" value="7" />
+		<preference name="android-maxSdkVersion" value="13" />
+		<preference name="android-installLocation" value="auto" />
+		<feature name="http://api.phonegap.com/1.0/file"/>
+		<icon src="images/wvbs-icon-57.png" gap:platform="ios" width="57" height="57" />
+		<icon src="images/wvbs-icon-72.png" gap:platform="ios" width="72" height="72" />
+		<icon src="images/wvbs-icon-114.png" gap:platform="ios" width="114" height="114" />
+		<icon src="images/wvbs-icon-144.png" gap:platform="ios" width="144" height="144" />
+		<icon src="images/wvbs-icon-36.png" gap:platform="android" gap:density="ldpi" />
+		<icon src="images/wvbs-icon-48.png" gap:platform="android" gap:density="mdpi" />
+		<icon src="images/wvbs-icon-72.png" gap:platform="android" gap:density="hdpi" />
+		<icon src="images/wvbs-icon-96.png" gap:platform="android" gap:density="xhdpi" />
+		<icon src="images/wvbs-icon-36.png" gap:platform="winphone" />
+		<icon src="images/wvbs-icon-62.png" gap:platform="winphone" gap:role="background" />
+		<icon src="images/wvbs-icon-64.png" gap:platform="blackberry" />
+		<icon src="images/wvbs-icon-64.png" gap:platform="webos" />
+		<gap:splash src="images/splash-iphone-lowres.png" width="320" height="480" />
+		<gap:splash src="images/splash-ipad-landscape.png" width="480" height="320" />
+		<gap:splash src="images/splash-iphone-hires.png" width="640" height="960" />
+		<gap:splash src="images/splash-ipad-landscape.png" width="960" height="640" />
+		<gap:splash src="images/splash-ipad-portrait.png" width="768" height="1024" />
+		<gap:splash src="images/splash-ipad-landscape.png" width="1024" height="768" />
+		<gap:splash src="images/splash.png" gap:platform="android" gap:density="hdpi" />
+		<gap:splash src="images/splash-iphone-hires.png" gap:platform="blackberry" />
+		<gap:splash src="images/splash.png" gap:platform="winphone" />
+	</widget>
