@@ -1,14 +1,16 @@
-/*The following CSS is used to try and resolve the flickering between page transitions*/
+/*The following CSS is used to try and resolve the flickering between page transitions
 * {
      margin: 0 auto;
     -webkit-transform: translateZ(0);
 }
-.ui-page /*from: http://stackoverflow.com/questions/5953753/flickering-when-navigating-between-pages*/
+.ui-page 
 {
     height: 100% !important;
 	-webkit-backface-visibility: hidden;
 }
-/*END of flickering fix*/
+*/
+/*from: http://stackoverflow.com/questions/5953753/flickering-when-navigating-between-pages
+END of flickering fix*/
 
 .ui-li-has-count .ui-li-count {
 font-size: 12px;
