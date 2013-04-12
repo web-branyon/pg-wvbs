@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">    
+    <meta name="viewport" content="width=device-width, initial-scale=1,  maximum-scale=1, user-scalable=yes">    
     <title>WVBS</title> 
 	<link rel="shortcut icon" type="image/x-icon" href="images/webapp.ico"  />
     <meta itemprop="image" content="images/webapp.ico">
@@ -28,15 +28,20 @@
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<!--<script src="GAPlugin.js"></script>-->
     <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.0.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.simultaneous-transitions.css"/>
     <link rel="stylesheet" href="css/wvbs-app.css" />
 	<script src="js/jquery-1.8.2.min.js"></script>
-	<script src="js/jquery.mobile-1.3.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>    
 	<script>
 		$(document).bind("mobileinit", function(){
 		  $.mobile.defaultPageTransition = 'slide';
+		  $.mobile.phonegapNavigationEnabled = true;
+		  $.mobile.buttonMarkup.hoverDelay = 50;
 		});
     </script>
+    <script src="js/jquery.mobile-transition-handler-simple.js"></script>
+    <script src="js/jquery.mobile.simultaneous-transitions-replace-simple.js"></script>
+	<script src="js/jquery.mobile-1.3.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>    
     <link rel="stylesheet" href="css/mobile.css" />
     <script src="js/wvbs-main.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -252,7 +257,7 @@
         }
 </style>
 </head> 
-<body id="MainBody" bgcolor="#B1AEAB" onLoad="onLoad()"> 
+<body id="MainBody" bgcolor="#000000" onLoad="onLoad()"> 
   <div data-role="page" id="mainPage" data-title="World Video Bible School's Mobile App">
 	<div data-role="header" data-position="fixed" data-theme="a">
         <h1></h1>
@@ -401,12 +406,8 @@ box-shadow:         0px 0px 15px rgba(50, 50, 49, 1);
       </div>
   </div>
 
+<!--
   <div data-role="page" id="albumArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
-	  <script>
-		$("#albumArchive").live("pageinit", function() {
-			//vimeoAlbumJSON(' ','50');
-		});
-      </script>
       <div data-role="header" data-position="fixed">
           <a href="#mainPage" data-rel="back">Back</a>
           <h1>WVBS Video Album Archive</h1>
@@ -428,16 +429,11 @@ box-shadow:         0px 0px 15px rgba(50, 50, 49, 1);
                 <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
                 <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
             </ul>
-        </div><!-- /navbar -->
+        </div>
       </div>
   </div>
     
     <div data-role="page" id="videoArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
-	  <script>
-		$("#videoArchive").live("pageinit", function() {
-			//vimeoVideoJSON(' ','50');
-		});
-      </script>
       <div data-role="header" data-position="fixed">
           <a href="#mainPage" data-rel="back">Back</a>
           <h1>WVBS Video Archive</h1>
@@ -459,9 +455,76 @@ box-shadow:         0px 0px 15px rgba(50, 50, 49, 1);
                 <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
                 <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
             </ul>
+        </div>
+      </div>
+  </div>
+-->
+<!-- BEGINNING OF NEW PAGE -->
+
+  <div data-role="page" id="ytAlbumArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
+	  <script>
+		$("#ytAlbumArchive").live("pageinit", function() {
+			//vimeoAlbumJSON(' ','50');
+		});
+      </script>
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1>WVBS Video Album Archive</h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="#mainPage" data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div class="content" data-role="content">
+        <ul id="ytArchiveAlbumsList" data-role="listview" data-filter="true" data-inset="true" data-divider-theme="c" data-theme="d" data-count-theme="e"></ul>
+		<div id="ytAlbumArchiveStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="ytAlbumArchiveFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
         </div><!-- /navbar -->
       </div>
   </div>
+    
+    <div data-role="page" id="ytVideoArchive" class="bground" data-title="WVBS Online Video Collection" data-dom-cache="true">
+	  <script>
+		$("#ytVideoArchive").live("pageinit", function() {
+			//vimeoVideoJSON(' ','50');
+		});
+      </script>
+      <div data-role="header" data-position="fixed">
+          <a href="#mainPage" data-rel="back">Back</a>
+          <h1>WVBS Video Archive</h1>
+         <div data-role="controlgroup" data-type="horizontal" style="top:0px;position:absolute;float:right;z-index:10;display:inline;" align="right" class="ui-btn-right"> 
+          <a href="javascript:onMenuShow();" data-role="button" data-icon="info">Menu</a> 
+          <a href="index.html" data-ajax='false' data-role="button" data-icon="home">Home</a> 
+        </div>
+      </div>
+  
+      <div class="content" data-role="content">
+        <ul id="ytArchiveVideosList" data-role="listview" data-filter="true" data-inset="true" data-divider-theme="c" data-theme="d" data-count-theme="e"></ul>
+		<div id="ytVideoArchiveStatus" class="status" style="padding-bottom:10px;" ></div>  
+      </div>
+  
+      <div id="ytVideoArchiveFooter" data-role="footer" data-position="fixed" data-theme="c" style="display:none;">
+        <div data-role="navbar" data-iconpos="top" data-theme="c" >
+            <ul>
+                <li><a href="http://www.wvbs.org/index.php/aboutus" data-icon="info" >About WVBS</a></li>
+                <li><a href="#contact" data-icon="star" data-transition="slideup">Contact</a></li>
+                <li><a href="javascript:onMenuShow();" data-icon="arrow-d">Done</a></li>
+            </ul>
+        </div><!-- /navbar -->
+      </div>
+  </div>
+
+<!-- END OF NEW PAGE -->
+
   <div data-role="page" id="videoPlayerPage" class="bground" data-title="WVBS Online Videos">
       <div data-role="header" data-position="fixed">
           <a href="#mainPage" data-rel="back">Back</a>
